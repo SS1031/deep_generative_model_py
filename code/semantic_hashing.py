@@ -14,6 +14,7 @@ from theano.tensor.shared_randomstreams import RandomStreams
 
 from utils import load_data
 from deep_generative_model import DGM
+from t_sne import plot_t_sne
 
 OUTPUT_DIR = '../result/'
 
@@ -191,3 +192,5 @@ if __name__ == '__main__':
                               datasets=datasets)
 
     hashed_vecs = semantic_hashing(trained_dgm, datasets[2])
+    # when you want to plot vecs to 2-dimension, you can use below code
+    plot_t_sne(t=2, X=hashed_vecs, y=datasets[2][1])

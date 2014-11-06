@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import offsetbox
 
-from sklearn.preprocessing import Binarizer
+# from sklearn.preprocessing import Binarizer
 from sklearn.manifold import TSNE
 
 
@@ -27,7 +27,7 @@ def load_data(file_name):
     pkl_file = open(file_name, 'r')
     dataset = cPickle.load(pkl_file)
     pkl_file.close()
-    return dataset 
+    return dataset
 
 
 def plot_embedding(X, y, title=None):
@@ -64,7 +64,14 @@ def plot_embedding(X, y, title=None):
     plt.xticks([]), plt.yticks([])
     if title is not None:
         plt.title(title)
+    plt.show()
 
+
+def plot_t_sne(t, X, y):
+    model = TSNE(n_components=t, random_state=0)
+    '... trainsforming'
+    X_tsne = model.fit_transform(X)
+    plot_embedding(X_tsne, y)
 
 if __name__ == '__main__':
 
@@ -75,15 +82,8 @@ if __name__ == '__main__':
     # X = Binarizer(threshold=0.1).fit_transform(X)
     y = dataset[1][0:1000]
 
-    print '... embedding code'
     t0 = time.clock()
+    plot_t_sne(t=2, X=X, y=y)
 
-    model = TSNE(n_components=2, random_state=0)
-    X_tsne = model.fit_transform(X)
-
-    plot_embedding(X_tsne, y,
-                   "t-SNE embedding of the 20Newsgroups (time %.2fs)" %
-                   (time.clock() - t0))
-    print time.clock() - t0
-
-    plt.show()
+    print 'plotting time = ',
+    print (time.clock() - t0)
