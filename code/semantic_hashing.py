@@ -193,4 +193,4 @@ if __name__ == '__main__':
 
     hashed_vecs = semantic_hashing(trained_dgm, datasets[2])
     # when you want to plot vecs to 2-dimension, you can use below code
-    plot_t_sne(t=2, X=hashed_vecs, y=datasets[2][1])
+    plot_t_sne(t=2, X=hashed_vecs.eval(), y=datasets[2][1].eval())

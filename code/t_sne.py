@@ -68,8 +68,8 @@ def plot_embedding(X, y, title=None):
 
 
 def plot_t_sne(t, X, y):
+    print '... transforming'
     model = TSNE(n_components=t, random_state=0)
-    '... trainsforming'
     X_tsne = model.fit_transform(X)
     plot_embedding(X_tsne, y)
 
