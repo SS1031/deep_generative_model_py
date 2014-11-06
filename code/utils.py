@@ -17,8 +17,9 @@ def load_data(dataset):
     #############
     data_dir, data_file = os.path.split(dataset)
     if data_dir == "" and not os.path.isfile(dataset):
-        new_path = os.path.join(os.path.split(__file__)[0], "../",
-                                "data", dataset)
+        new_path =\
+            os.path.join(os.path.split(__file__)[0], "../", "data", dataset)
+
         if os.path.isfile(new_path) or data_file == 'mnist.pkl.gz':
             dataset = new_path
 
@@ -29,7 +30,7 @@ def load_data(dataset):
         print 'Downloading data from %s' % origin
         urllib.urlretrieve(origin, dataset)
 
-    print '... loading data'
+    print '... loading data -> ' + dataset
 
     f = gzip.open(dataset, 'rb')
     train_set, valid_set, test_set = cPickle.load(f)
